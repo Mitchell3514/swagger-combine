@@ -37,8 +37,8 @@ class SwaggerCombine {
       .then(() => this.addSecurityToPaths())
       .then(() => this.addBasePath())
       .then(() => this.combineSchemas())
-      .then(() => this.removeEmptyFields());
-    // .then(() => this.removeConfigFields());
+      .then(() => this.removeEmptyFields())
+      .then(() => this.removeConfigFields());
   }
 
   combineAndReturn() {
@@ -706,6 +706,7 @@ class SwaggerCombine {
     this.combinedSchema = _(this.combinedSchema)
       .omit("excludeParameters")
       .value();
+    return this;
   }
 
   // Expand `pathMatchList` into a set of defined path.method strings that exist in `schema`
