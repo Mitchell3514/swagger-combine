@@ -149,8 +149,12 @@ class SwaggerCombine {
           this.combinedSchema.excludeParameters)
       ) {
         const globalExcludeParameters = this.combinedSchema.excludeParameters;
-        const excludeParameters = this.apis[idx].paths.parameters?.exclude;
-        const includeParameters = this.apis[idx].paths.parameters?.include;
+        const excludeParameters = this.apis[idx].paths.parameters
+          ? this.apis[idx].paths.parameters.exclude
+          : [];
+        const includeParameters = this.apis[idx].paths.parameters
+          ? this.apis[idx].paths.parameters.include
+          : [];
 
         if (!_.isEmpty(globalExcludeParameters)) {
           _.forIn(schema.paths, (pathInSchema, path) => {
