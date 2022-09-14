@@ -703,7 +703,9 @@ class SwaggerCombine {
   }
 
   removeConfigFields() {
-    this.combinedSchema = _(this.combinedSchema).omit("excludeParameters");
+    this.combinedSchema = _(this.combinedSchema)
+      .omit("excludeParameters")
+      .value();
   }
 
   // Expand `pathMatchList` into a set of defined path.method strings that exist in `schema`
