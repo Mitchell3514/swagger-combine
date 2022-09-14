@@ -1,39 +1,27 @@
-const swaggerCombine = require('../src');
+const swaggerCombine = require("../src");
 
 const config = (module.exports = {
-  swagger: '2.0',
+  swagger: "2.0",
   info: {
-    title: 'Swagger Combine Filter Example',
+    title: "Swagger Combine Filter Example",
     version: {
-      $ref: './package.json#/version',
+      $ref: "./package.json#/version",
     },
   },
+  excludeParameters: ["file"],
   apis: [
     {
-      url: 'http://petstore.swagger.io/v2/swagger.json',
+      url: "http://petstore.swagger.io/v2/swagger.json",
       paths: {
-        exclude: ['/pet/{petId}', '/pet.put'],
-        parameters: {
-          exclude: {
-            '/pet/findByStatus': 'status',
-          },
-        },
-      },
-    },
-    {
-      url: 'https://api.apis.guru/v2/specs/medium.com/1.0.0/swagger.yaml',
-      paths: {
-        include: ['/users/{userId}/publications', '/publications/{publicationId}/posts', '/me.get'],
-        parameters: {
-          include: {
-            '/publications/{publicationId}/posts.post': 'publicationId',
-          },
-        },
+        include: ["/pet/{petId}/uploadImage"],
+        parameters: {},
       },
     },
   ],
 });
 
 if (!module.parent) {
-  swaggerCombine(config).then(res => console.log(JSON.stringify(res, false, 2))).catch(err => console.error(err));
+  swaggerCombine(config)
+    .then((res) => console.log(JSON.stringify(res, false, 2)))
+    .catch((err) => console.error(err));
 }
