@@ -37,8 +37,8 @@ class SwaggerCombine {
       .then(() => this.addSecurityToPaths())
       .then(() => this.addBasePath())
       .then(() => this.combineSchemas())
-      .then(() => this.removeEmptyFields())
-      .then(() => this.removeConfigFields());
+      .then(() => this.removeEmptyFields());
+    // .then(() => this.removeConfigFields());
   }
 
   combineAndReturn() {
